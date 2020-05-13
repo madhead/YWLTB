@@ -2,3 +2,6 @@
 build
 
 .idea
+out
+
+.env
