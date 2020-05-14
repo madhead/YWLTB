@@ -1,5 +1,84 @@
+image:https://www.herokucdn.com/deploy/button.svg[Latest Release,link=https://heroku.com/deploy?template=https://github.com/madhead/YWLTB]
+
 # YWLTB
 
-Watch later on YouTube Telegram Bot: https://t.me/YouTubeWatchLaterBot.
+Watch later on YouTube Telegram Bot: https://t.me/YouTubeWatchLaterBot[@YouTubeWatchLaterBot].
 
 Send YouTube links to this bot to add them to your "Watch later" playlist.
+
+## Self-hosting
+
+You can host YWLTB yourself for free on Heroku using the button at the top of this README if you don't trust me.
+Although, you'll need to configure a few things.
+
+### Telegram Bot
+
+As is is a Telegram bot, you'll need to configure your own bot.
+Just go to the https://t.me/BotFather[@BotFather], run the `/newbot` command and follow the instructions.
+Note the bot API token after the bot is created: you'll need to pass it via `TELEGRAM_BOT_TOKEN` environment variable to the app.
+
+### PostgreSQL
+
+The template includes a free tier setup of https://devcenter.heroku.com/articles/heroku-postgresql[Heroku Postgres], it should be sufficient for a personal use.
+Everything should be configured automatically, and the `DATABASE_URL` environment variable should be populated.
+
+### YouTube API
+
+The most interesting part!
+
+I recommend creating a separate project in https://console.cloud.google.com[Google Cloud Platform] for YWLTB.
+
+After the project is selected, go to "APIs & Services" → "Credentials":
+
+image::https://user-images.githubusercontent.com/577360/81992971-62a74900-964d-11ea-92dc-aa092ab4399b.png[]
+
+Click on "+ CREATE CREDENTIALS" and select "OAuth client ID":
+
+image::https://user-images.githubusercontent.com/577360/81993084-9f734000-964d-11ea-8ba7-9723824b17ab.png[]
+
+Fill up the details like on the image below.
+*Use you own Authorized redirect URIs!* Redirect URI is basically your Heroku's app URL + `/authorize`.
+E.g. if you prefer to name your app like `my-ywltb` (names must be unique, I guess), then the URI should be `https://my-ywltb.herokuapp.com/authorize`.
+BTW, this URL should be set in `GOOGLE_REDIRECT_URL` environment variable.
+
+image::https://user-images.githubusercontent.com/577360/81993211-e5300880-964d-11ea-88f0-12ad09fdcf39.png[]
+
+Note the Client ID and Client secret, you'll need to put them into `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` environment variables of your Heroku app.
+
+Go to "OAuth consent screen" page under "APIs & Services" section and fill the form.
+You may use any values here, especially if you choose not to publish your app.
+The most important config os "Scopes for Google APIs": don't forget to add `https://www.googleapis.com/auth/youtube` scope (scopes are basically strings).
+This scope is required to manage your YouTube content, and, more specifically, to add videos to "Watch Later" playlist.
+
+image::https://user-images.githubusercontent.com/577360/81993769-178e3580-964f-11ea-9d35-ac276bf237f6.png[]
+
+That's all you need to do in Google Cloud Console.
+
+### Other environment variables
+
+Just leave the defaults:
+
+[source,shell]
+----
+GRADLE_TASK=installDist
+YWLTB_LOG_ROOT_THRESHOLD=WARN
+YWLTB_LOG_THRESHOLD=DEBUG
+----
+
+## Troubleshooting
+
+### "This app isn't verified" warning
+
+While using the original app (https://t.me/YouTubeWatchLaterBot[@YouTubeWatchLaterBot] / https://ywltb.herokuapp.com) or your own self-hosted installation you may see a screen like this:
+
+image::https://user-images.githubusercontent.com/577360/81994171-ed894300-964f-11ea-859b-81f626994f85.png[]
+
+It's totally okay and means that the app was not verified by Google employees yet.
+I hope one day they will approve the original app, and the screen will go.
+It's okay to make your app "Internal" on Google Cloud Platform as well and use it solely by yourself.
+
+### The bot doesn't respond to my message
+
+It's okay, the app is probably https://blog.heroku.com/app_sleeping_on_heroku[just being woken up after a power nap].
+
+If it doesn't respond in 30-45 seconds, take a look at the logs in Heroku UI or CLI (`heroku logs`).

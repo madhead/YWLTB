@@ -1,0 +1,52 @@
+{
+	"name": "YWLTB",
+	"description": "Send YouTube links to this Telegram bot to add them to your \"Watch later\" playlist on YouTube.",
+	"logo": "https://github.com/madhead/YWLTB/raw/master/logo.png",
+	"repository": "https://github.com/madhead/YWLTB",
+	"keywords": [
+		"telegram",
+		"youtube",
+		"telegram-bot"
+	],
+	"env": {
+		"DATABASE_URL": {
+			"description": "Heroku Postgres URL"
+		},
+		"GOOGLE_CLIENT_ID": {
+			"description": "Google Client ID"
+		},
+		"GOOGLE_CLIENT_SECRET": {
+			"description": "Google Client secret"
+		},
+		"GOOGLE_REDIRECT_URL": {
+			"description": "Your Heroku domain for this app + /authorize"
+		},
+		"GRADLE_TASK": {
+			"description": "Gradle buildpack configuration",
+			"value": "installDist"
+		},
+		"TELEGRAM_BOT_TOKEN": {
+			"description": "Telegram bot token"
+		},
+		"YWLTB_LOG_ROOT_THRESHOLD": {
+			"description": "Log4j 2 root logger level",
+			"required": false,
+			"value": "WARN"
+		},
+		"YWLTB_LOG_THRESHOLD": {
+			"description": "Log4j 2 app logger level",
+			"required": false,
+			"value": "DEBUG"
+		}
+	},
+	"formation": [
+		{
+			"process": "web",
+			"quantity": 1,
+			"size": "free"
+		}
+	],
+	"addons": [
+		"heroku-postgresql"
+	]
+}
