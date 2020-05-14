@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: madhead
+      changes:
+        - sqlFile:
+            path: sql/ywltb.init.sql
+            relativeToChangelogFile: true
+      rollback:
+        - sqlFile:
+            path: sql/ywltb.deinit.sql
+            relativeToChangelogFile: true
