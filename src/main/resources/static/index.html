@@ -1,15 +1,112 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width'>
-        <title>Watch later on YouTube Telegram Bot</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <title>YWLTB</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-
-    <body>
-        <h1>Watch later on YouTube Telegram Bot</h1>
-        <p>Send YouTube links to this Telegram bot to add them to your "Watch later" playlist on YouTube.</p>
-    </body>
+  <body class="homepage">
+    <section class="jumbo">
+      <h2>
+        <span class="line color-youtube">YouTube</span>
+        <span class="line">Watch</span>
+        <span class="line">Later</span>
+        <span class="color-telegram">Telegram</span>
+        <span class="line">Bot&nbsp;<span class="blink">↓</span></span>
+      </h2>
+    </section>
+    <section>
+      <h2>
+        <span class="line">What is it?</span>
+      </h2>
+      <p>
+        <span class="color-youtube">Y</span>WL<span class="color-telegram"
+          >T</span
+        >B is a Telegram bot.
+      </p>
+      <p>
+        It can be found in Telegram at
+        <a class="color-telegram" href="https://t.me/YouTubeWatchLaterBot"
+          >@YouTubeWatchLaterBot</a
+        >.
+      </p>
+      <p>
+        It does one simple thing: adds incoming YouTube videos into your "Watch
+        Later" playlist.
+      </p>
+    </section>
+    <section>
+      <h2>
+        <span class="line">How does it work?</span>
+      </h2>
+      <ol>
+        <li>
+          You give a consent to the bot to access and manage your YouTube
+          account.
+          <a class="color-youtube" href="privacy.html">Privacy Policy</a>
+          applies.
+        </li>
+        <li>You send YouTube links to the bot.</li>
+        <li>The bot adds them to the end of your "Watch Later" playlist.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>
+        <span class="line"
+          >Manage <span class="color-youtube">my</span> YouTube?</span
+        >
+      </h2>
+      <p>
+        Yes. You need to give this bot access to manage your YouTube account.
+        Without that, it cannot modify your "Watch Later" playlist.
+        <a class="color-youtube" href="privacy.html">Privacy Policy</a>
+        applies.
+      </p>
+      <p>
+        But don't worry!
+      </p>
+      <p>
+        <strong>First</strong>, you don't need to provide this bot your username
+        and password. It uses
+        <a class="color-youtube" href="https://en.wikipedia.org/wiki/OAuth"
+          >OAuth</a
+        >
+        to access your YouTube account. OAuth uses short-lived tokens with a
+        limited scope to access data via API. It means that your credentials are
+        not exposed to the bot and the access is limited only to the YouTube
+        API. The bot cannot access other resources like your Gmail or Google
+        Calendar.
+      </p>
+      <p>
+        <strong>Second</strong>, you are in full control of this access. You can
+        revoke it at any moment in your
+        <a class="color-youtube" href="https://myaccount.google.com/permissions"
+          >Google Account settings</a
+        >.
+      </p>
+      <p>
+        <strong>Third</strong>, this bot is an Open Source Software. You can
+        review the codebase, hosted on
+        <a class="color-youtube" href="https://gitlab.com/madhead/YWLTB"
+          >GitLab</a
+        >
+        and
+        <a class="color-youtube" href="https://github.com/madhead/YWLTB"
+          >GitHub</a
+        >, for any potential threats, and decide to trust it or not. You can
+        even deploy your private instance of this bot and use it. The
+        instructions can be found in the README of the aforementioned
+        repositories.
+      </p>
+    </section>
+  </body>
 </html>
