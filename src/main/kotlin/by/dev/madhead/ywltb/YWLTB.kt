@@ -40,12 +40,14 @@ fun Application.main() {
     val credentialsDataStore = CredentialsDataStore(usersDAO)
     val transport = NetHttpTransport()
     val jsonFactory = JacksonFactory()
+    val clientId = environment.config.property("google.clientId").getString()
+    val clientSecret = environment.config.property("google.clientSecret").getString()
     val googleAuthorizationCodeFlow = GoogleAuthorizationCodeFlow
             .Builder(
                     transport,
                     jsonFactory,
-                    environment.config.property("google.clientId").getString(),
-                    environment.config.property("google.clientSecret").getString(),
+                    clientId,
+                    clientSecret,
                     listOf(YouTubeScopes.YOUTUBE)
             )
             .setCredentialDataStore(credentialsDataStore)
