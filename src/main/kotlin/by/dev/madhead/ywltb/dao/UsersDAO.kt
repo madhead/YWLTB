@@ -5,16 +5,16 @@ import java.sql.Types
 import javax.sql.DataSource
 
 class UsersDAO(private val dataSource: DataSource) {
-    fun getById(id: Int): User? {
+    fun getById(id: Long): User? {
         dataSource.connection.use { connection ->
             connection
                     .prepareStatement("SELECT * FROM users WHERE id = ?;")
                     .use { preparedStatement ->
-                        preparedStatement.setInt(1, id)
+                        preparedStatement.setLong(1, id)
                         preparedStatement.executeQuery().use { resultSet ->
                             if (resultSet.next()) {
                                 return User(
-                                        id = resultSet.getInt(1),
+                                        id = resultSet.getLong(1),
                                         accessToken = resultSet.getString(2),
                                         refreshToken = resultSet.getString(3),
                                         videosAdded = run {
@@ -49,7 +49,7 @@ class UsersDAO(private val dataSource: DataSource) {
                                 videosadded = EXCLUDED.videosadded;
                     """.trimIndent())
                     .use { preparedStatement ->
-                        preparedStatement.setInt(1, user.id)
+                        preparedStatement.setLong(1, user.id)
                         preparedStatement.setString(2, user.accessToken)
                         preparedStatement.setString(3, user.refreshToken)
                         if (user.videosAdded != null) {
@@ -62,7 +62,7 @@ class UsersDAO(private val dataSource: DataSource) {
         }
     }
 
-    fun trackVideosAdded(id: Int, videosAdded: Int) {
+    fun trackVideosAdded(id: Long, videosAdded: Int) {
         dataSource.connection.use { connection ->
             connection
                     .prepareStatement("""
@@ -72,7 +72,22 @@ class UsersDAO(private val dataSource: DataSource) {
                     """.trimIndent())
                     .use { preparedStatement ->
                         preparedStatement.setInt(1, videosAdded)
-                        preparedStatement.setInt(2, id)
+                        preparedStatement.setLong(2, id)
+                        preparedStatement.executeUpdate()
+                    }
+        }
+    }
+
+    fun delete(id: Long) {
+        dataSource.connection.use { connection ->
+            connection
+                    .prepareStatement("""
+                        DELETE
+                        FROM users
+                        WHERE id = ?
+                    """.trimIndent())
+                    .use { preparedStatement ->
+                        preparedStatement.setLong(1, id)
                         preparedStatement.executeUpdate()
                     }
         }

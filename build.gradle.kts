@@ -22,8 +22,7 @@ dependencies {
 
     implementation(kotlin("stdlib-jdk8"))
     implementation("io.ktor:ktor-server-netty")
-    implementation("by.dev.madhead.telek:model:0.0.5")
-    implementation("com.github.insanusmokrassar:TelegramBotAPI-extensions-api:0.27.2")
+    implementation("com.github.insanusmokrassar:TelegramBotAPI-extensions-api:0.27.3")
     implementation("org.postgresql:postgresql:42.2.12")
     implementation("com.google.apis:google-api-services-youtube:v3-rev20200423-1.30.9")
     implementation("org.apache.logging.log4j:log4j-core")

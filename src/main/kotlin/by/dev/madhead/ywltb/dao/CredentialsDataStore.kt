@@ -18,11 +18,11 @@ class CredentialsDataStore(
     override fun getId() = "YWLTB"
 
     override fun set(key: String, value: StoredCredential): DataStore<StoredCredential> {
-        val id = key.toIntOrNull() ?: throw IllegalArgumentException()
+        val id = key.toLongOrNull() ?: throw IllegalArgumentException()
         val user = usersDAO
                 .getById(id)
                 ?.copy(accessToken = value.accessToken, refreshToken = value.refreshToken)
-                ?: User(id, value.accessToken, value.refreshToken)
+                ?: User(id.toLong(), value.accessToken, value.refreshToken)
 
         usersDAO.save(user)
 
@@ -38,7 +38,7 @@ class CredentialsDataStore(
     override fun containsKey(key: String?) = throw UnsupportedOperationException()
 
     override fun get(key: String): StoredCredential? {
-        val id = key.toIntOrNull() ?: throw IllegalArgumentException()
+        val id = key.toLongOrNull() ?: throw IllegalArgumentException()
         val user = usersDAO.getById(id) ?: return null
 
         return StoredCredential().apply {
