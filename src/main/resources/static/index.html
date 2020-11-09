@@ -30,12 +30,12 @@
     </section>
     <section>
       <h2>
-        <span class="line">What is it?</span>
+        <span class="line">What <del>is</del>was it?</span>
       </h2>
       <p>
         <span class="color-youtube">Y</span>WL<span class="color-telegram"
           >T</span
-        >B is a Telegram bot.
+        >B <del>is</del>was a Telegram bot.
       </p>
       <p>
         It can be found in Telegram at
@@ -44,13 +44,45 @@
         >.
       </p>
       <p>
-        It does one simple thing: adds incoming YouTube videos into your "Watch
-        Later" playlist.
+        It <del>does</del>did one simple thing: adding incoming YouTube videos
+        into your "Watch Later" playlist.
+      </p>
+      <p>
+        September 9th, 2020 Google
+        <a
+          class="color-youtube"
+          href="https://developers.google.com/youtube/v3/revision_history#september-9,-2020"
+          >deprecated</a
+        >
+        some essential APIs used by this bot. More specifically, Google removed
+        the ability to add items into user's "Watch Later" playlist via API:
+      </p>
+      <blockquote>
+        The <code>channel</code> resource's
+        <code>contentDetails.relatedPlaylists.watchLater</code> and
+        <code>contentDetails.relatedPlaylists.watchHistory</code> properties
+        were both announced as deprecated on
+        <a
+          class="color-telegram"
+          href="https://developers.google.com/youtube/v3/revision_history#august-11,-2016"
+          >11 August 2016</a
+        >.
+        <span class="color-youtube"
+          >The <code>playlistItems.insert</code> method's and
+          <code>playlistItems.delete</code> method's support for these playlists
+          are also now fully deprecated, and the two properties have been
+          removed from the documentation.</span
+        >
+      </blockquote>
+      <p>
+        So, <span class="color-youtube">Y</span>WL<span class="color-telegram"
+          >T</span
+        >B doesn't work anymore.
       </p>
     </section>
     <section>
       <h2>
-        <span class="line">How does it work?</span>
+        <span class="line">How <del>does</del>did it work?</span>
       </h2>
       <ol>
         <li>
@@ -75,9 +107,7 @@
         <a class="color-youtube" href="privacy.html">Privacy Policy</a>
         applies.
       </p>
-      <p>
-        But don't worry!
-      </p>
+      <p>But don't worry!</p>
       <p>
         <strong>First</strong>, you don't need to provide this bot your username
         and password. It uses

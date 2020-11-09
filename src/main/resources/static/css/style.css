@@ -39,11 +39,18 @@ h2 span.line {
 }
 
 section p,
-section ol > li {
+section ol > li,
+section blockquote {
   font-size: 28px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
   margin: 10px 0;
+}
+
+section blockquote {
+  font-style: italic;
+  font-size: 26px;
+  margin: 0 5%;
 }
 
 @media only screen and (max-width: 768px) {
